@@ -1,0 +1,24 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body ng-app="financeTrackerApp">
+
+    <div class="navbar">
+        <a href="#/dashboard" ng-class="{'active': isActive('/dashboard')}">Dashboard</a>
+        <a href="#/expenses" ng-class="{'active': isActive('/expenses')}">Expenses</a>
+        <a href="#/income" ng-class="{'active': isActive('/income')}">Income</a>
+    </div>
+
+    <div ng-view></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
