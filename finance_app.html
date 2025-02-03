@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="financeApp"> <!-- Declaring HTML document type and setting AngularJS app -->
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding for proper text display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
+    <title>Personal Finance Tracker</title> <!-- Sets the page title -->
+
+    <!-- Load AngularJS and ngRoute module for single-page application functionality -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="app.js"></script> <!-- Link to custom JavaScript file containing AngularJS logic -->
+
+    <style>
+        /* Basic styling for the overall page */
+        body {
+            font-family: Arial, sans-serif; /* Sets a clean, readable font */
+            background-color: #e3f2fd; /* Light blue background */
+            text-align: center; /* Centers text content */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container to wrap main content */
+        .container {
+            max-width: 800px; /* Limits the width for better readability */
+            margin: auto; /* Centers content horizontally */
+            padding: 20px;
+            background: white; /* White background for contrast */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow effect */
+            border-radius: 8px; /* Rounds corners for a smoother look */
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background: #007BFF; /* Blue background color */
+            padding: 10px;
+        }
+
+        /* Styling for navigation links */
+        nav a {
+            color: white; /* White text for visibility */
+            text-decoration: none; /* Removes underline from links */
+            padding: 10px 15px;
+            display: inline-block; /* Makes links behave like buttons */
+        }
+
+        /* Hover effect for navigation links */
+        nav a:hover {
+            background: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Class to indicate the active page */
+        .active {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation bar with links to different sections -->
+    <nav>
+        <a href="#/dashboard">Dashboard</a> <!-- Link to Dashboard -->
+        <a href="#/expenses">Expenses</a> <!-- Link to Expenses section -->
+        <a href="#/income">Income</a> <!-- Link to Income section -->
+    </nav>
+
+    <!-- Container for AngularJS dynamic view (content changes based on route) -->
+    <div class="container">
+        <ng-view></ng-view> <!-- Placeholder where AngularJS will load different views -->
+    </div>
+
+    <!-- Dashboard Section -->
+    <div>
+        <h2>Dashboard</h2> <!-- Heading for Dashboard -->
+        <p><strong>Total Income:</strong> TotalIncome</p> <!-- Displays total income -->
+        <p><strong>Total Expenses:</strong>TotalExpenses</p> <!-- Displays total expenses -->
+        <p><strong>Balance:</strong>Balance</p> <!-- Displays remaining balance -->
+    </div>
+
+</body>
+</html>
