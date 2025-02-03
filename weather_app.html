@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="weatherApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+
+    <!-- Load AngularJS from Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- Load external JavaScript file for AngularJS logic -->
+    <script src="app.js"></script>
+
+    <style>
+        /* Basic styling for the webpage */
+        body { 
+            font-family: Arial, sans-serif; /* Set default font */
+            text-align: center; /* Center align text */
+            margin: 20px; /* Add margin */
+            background-color: #cce7ff; /* Light blue background */
+        }
+        .container { 
+            max-width: 600px; /* Set maximum width */
+            margin: auto; /* Center the container */
+            background: white; /* White background for content */
+            padding: 20px; /* Add padding */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add slight shadow */
+        }
+        input, button { 
+            padding: 10px; /* Add padding */
+            margin: 5px; /* Add margin */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #007BFF; /* Blue border */
+        }
+        button {
+            background-color: #007BFF; /* Blue button */
+            color: white; /* White text */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .weather-card, .favorites { 
+            border: 1px solid #ddd; /* Light grey border */
+            padding: 15px; /* Add padding */
+            margin-top: 10px; /* Add margin at the top */
+            border-radius: 5px; /* Rounded corners */
+            background-color: light grey; /* Light grey background */
+        }
+        .favorites ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+        }
+        .favorites li {
+            padding: 5px 0; /* Add padding */
+        }
+        .favorites a {
+            text-decoration: none; /* Remove underline */
+            color: Red; /* Blue text */
+            cursor: pointer; /* Pointer cursor */
+        }
+        .favorites a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body ng-controller="WeatherController"> <!-- Attach AngularJS controller -->
+
+    <div class="container">
+        <h2>Weather Dashboard</h2> <!-- Heading -->
+
+        <!-- Input field for entering the city name -->
+        <input type="text" ng-model="city" placeholder="Enter city name">
+        
+        <!-- Button to fetch weather data -->
+        <button ng-click="getWeather()">Get Weather</button>
+
+        <!-- Display weather information if available -->
+        <div class="weather-card" ng-if="weather">
+            <h3>Weather Of City</h3> <!-- Display city name -->
+            <p>Temperature: weather.main.temp in °C</p> <!-- Display temperature -->
+            <p>Humidity: weather.main.humidity in %</p> <!-- Display humidity -->
+            <p>Condition: weather.weather[0].description</p> <!-- Display weather condition -->
+
+            <!-- Button to add the city to the favorites list -->
+            <button ng-click="addFavorite(weather.name)">Add to Favorites</button>
+        </div>
+
+        <!-- Display error message if API call fails -->
+        <p style="color: red;" ng-if="error">Error!!</p>
+
+        <!-- Display the list of favorite cities if any exist -->
+        <div class="favorites" ng-if="favorites.length">
+            <h3>Favorite Cities</h3>
+            <ul>
+                <!-- Loop through the favorite cities and allow users to click on them to fetch weather data -->
+                <li ng-repeat="fav in favorites | orderBy:'toLowerCase()'">
+                    <a href="#" ng-click="getWeather(fav)">Favorites!</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
